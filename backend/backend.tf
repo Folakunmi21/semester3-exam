@@ -1,44 +1,44 @@
 
 
 #terraform {
- # backend "s3" {
- #   bucket         = "socksappbucket"
- #   key            = "terraform.tfstate"
- #   region         = "us-west-1"
- #   dynamodb_table = "sockapptable"
- # }
-#}
+  backend "s3" {
+    bucket         = "socksappbucket"
+    key            = "terraform.tfstate"
+    region         = "us-west-1"
+    dynamodb_table = "sockapptable"
+  }
+}
 
-#resource "aws_s3_bucket" "socksappbucket" {
-#  bucket   = "socksappbucket"
+resource "aws_s3_bucket" "socksappbucket" {
+  bucket   = "socksappbucket"
 
-#  lifecycle {
-#    prevent_destroy = true
-#  }
-
-
-#versioning {
-#  enabled = true
-# }
-#}
-#resource "aws_s3_bucket_server_side_encryption_configuration" "server-side-encryp" {
-#  bucket = aws_s3_bucket.socksappbucket.id
+  lifecycle {
+    prevent_destroy = true
+  }
 
 
-#  rule {
-#    apply_server_side_encryption_by_default {
-#      sse_algorithm     = "AES256"
-#    }
-#  }
-#}
+versioning {
+  enabled = true
+ }
+}
+resource "aws_s3_bucket_server_side_encryption_configuration" "server-side-encryp" {
+  bucket = aws_s3_bucket.socksappbucket.id
 
-#resource "aws_dynamodb_table" "statelock-table" {
-#  name             = "statelock-table"
-#  hash_key         = "LockID"
-#  billing_mode     = "PAY_PER_REQUEST"
 
-#  attribute {
-#    name = "LockID"
-#    type = "S"
-#  }
-#}
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm     = "AES256"
+    }
+  }
+}
+
+resource "aws_dynamodb_table" "statelock-table" {
+  name             = "statelock-table"
+  hash_key         = "LockID"
+  billing_mode     = "PAY_PER_REQUEST"
+
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
+}
