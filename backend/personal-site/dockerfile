@@ -1,0 +1,5 @@
+FROM nginx:alpine
+
+MAINTAINER Afuape Esther O <afuapeesther@gmail.com>
+
+COPY . /usr/share/nginx/html
