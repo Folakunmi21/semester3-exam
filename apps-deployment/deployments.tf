@@ -4,7 +4,7 @@ resource "kubernetes_namespace" "kube-namespace-personalsite" {
   metadata {
     name = "personalsite-namespace"
     labels = {
-      app = "portfolio"
+      app = "personalsite"
     }
   }
 }
